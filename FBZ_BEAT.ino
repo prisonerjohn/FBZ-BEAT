@@ -1,3 +1,5 @@
+#include "Globals.h"
+
 #define DEBUG 1
 
 //*************************
@@ -10,6 +12,8 @@ int latchPin = 7;
 int clockPin = 6;
 ////Pin connected to DS of 74HC595 to D11 or D5 (blue)
 int dataPin = 5;
+
+int mode;
 
 int pot = A0;
 int tempo;
@@ -34,11 +38,15 @@ void setup()
   pinMode(dataPin, OUTPUT);
   
   numberToDisplay = 1;
+  
+  initModeSwitch();
 }
 
 //-------------------------
 void loop() 
 {
+  readModeSwitch();
+ 
   tempo = analogRead(pot);
   
   if (numberToDisplay < 129) {
