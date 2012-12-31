@@ -1,4 +1,10 @@
-//Pin connected to ST_CP of 74HC595to D8 or D7 (green)
+#define DEBUG 1
+
+//*************************
+// PROGRAM VARIABLES
+//*************************
+
+//Pin connected to ST_CP of 74HC595 to D8 or D7 (green)
 int latchPin = 7;
 //Pin connected to SH_CP of 74HC595 to D12 or D6 (yellow)
 int clockPin = 6;
@@ -9,7 +15,19 @@ int pot = A0;
 int tempo;
 int numberToDisplay;
 
-void setup() {
+//*************************
+// MAIN LOOP
+//*************************
+
+//-------------------------
+void setup() 
+{
+#ifdef DEBUG
+  Serial.begin(9600);
+#else 
+  Serial.begin(31250);  // MIDI
+#endif
+  
   //set pins to output so you can control the shift register
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
@@ -18,8 +36,9 @@ void setup() {
   numberToDisplay = 1;
 }
 
-void loop() {
-  Serial.begin(9600);
+//-------------------------
+void loop() 
+{
   tempo = analogRead(pot);
   
   if (numberToDisplay < 129) {
