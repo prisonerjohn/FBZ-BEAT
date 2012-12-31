@@ -14,9 +14,8 @@ int clockPin = 6;
 int dataPin = 5;
 
 int mode;
-
-int pot = A0;
 int tempo;
+
 int numberToDisplay;
 
 //*************************
@@ -39,16 +38,16 @@ void setup()
   
   numberToDisplay = 1;
   
+  initTempo();
   initModeSwitch();
 }
 
 //-------------------------
 void loop() 
 {
+  readTempo();
   readModeSwitch();
- 
-  tempo = analogRead(pot);
-  
+   
   if (numberToDisplay < 129) {
     // take the latchPin low so 
     // the LEDs don't change while you're sending in bits:

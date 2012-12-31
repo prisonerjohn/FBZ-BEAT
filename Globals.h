@@ -10,9 +10,10 @@
 #define MODE_LIVE_PLAY 3
 
 //*************************
-// SWITCH DEFINITIONS
+// INPUT DEFINITIONS
 //*************************
 
+#define KNOB_TEMPO     A0
 #define SWITCH_MODE_1  A3
 #define SWITCH_MODE_2  A4
 
